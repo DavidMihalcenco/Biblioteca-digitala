@@ -1,0 +1,165 @@
+Clasele folosite in tema:
+-Administrator
+-Author
+-Book
+-Country
+-EditorialGroup
+-IdNameBooks(abstracta)
+-Interfata IPublishingArtifacts
+-Language
+-MainTema
+-PublishingBrand
+-PublishingRetailer
+-ReadFromFile
+-Utils(abstracta)
+-WritterInFile
+
+Author:
+    In autor am constructorul, get si set pentru fiecare caracteristica.
+
+Book:
+    Extinde clasa abstracta NameAndId si implementeaza IPublishingArtifact.
+    -Am un constructor cu parametri
+    -get si set pentru fiecare caracteristica
+    -metoda dateToCalendar care imi verifica data primita ca string daca este valida
+    -metoda dateToString care imi face data inapoi in string
+    -metoda publish care in afiseaza cartea
+    -Tab care imi adauga numarul de taburi dorite
+    -toString care imi creaza cartea care o folosesc in toate publish-urile urmatoare
+
+Country:
+    -Constructorul cu parametri
+    -get si set pentru fiecare caracteristica
+
+EditorialGroup:
+    Extinde clasa abstracta NameAndId si implementeaza IPublishingArtifact.
+     -Am un constructor cu parametri
+     -metoda publish care in afiseaza un EditorialGroup
+
+Language:
+    Extinde clasa NameAndId
+    -Am un constructor cu parametri
+    -get si set pentru fiecare caracteristica
+
+EditorialGroup:
+    Extinde clasa abstracta NameAndId si implementeaza IPublishingArtifact.
+     -Am un constructor cu parametri
+     -metoda publish care in afiseaza un PublishingBrand
+
+PublisingRetailer:
+    Extinde clasa abstracta NameAndId
+     -Am un constructor cu parametri
+     -get si set pentru fiecare caracteristica
+
+ReadFromFile:
+    In aceasta clasa am citit si am facut legaturile.
+    -readBooks
+        Aici am creat un array de carti de lungime 1000 deoarece sunt 1000 de carti am citit din fisier,
+        si am creat cartile, am returnat array-ul de carti
+
+    -readAuthors
+       Am creat un array de autori cu lungimea 2381 am citit din fisier fiecare autor, si l-am creat,am
+       returnat array-ul de autori
+
+    -readLanguage
+        Am creat un array de limbi cu lungimea 4, si am creat limbile, am intors array-ul cu toate limbile
+
+    -readIdAuthorBook
+        Aici citit doua id-uri unul a cartii si unul a autorilor, am folosit doua metode: findBookByID care imi cauta
+        dupa id in array cartea si findAuthorsByID care imi cauta autorul dupa id in array-ul creat mai sus.
+        Dupa ce am gasit am o metoda addAtFinalOfBooksArrayAuthor care imi adauga la finalul cartii autorii.
+
+    -readEditorialGroup
+       Am creat un array de lungime 264 am citit din fisier editorialGroup si l-am creat.
+
+    -readIDBookEditorialGroup
+        Aici este la fel ca in functia readIdAuthorBook doar ca aici folosesc metoda findEditorialGroupByID,si
+        adaug cartile la finalul fiecarui EditorialGroup cu ajutorul metodei addAtFinalOfEditorialGroupsArray
+
+    -readPublishingBrand
+        Metoda care creaza arrat0ul publishingBrand
+
+    -readIDbookPublishingBrand
+        Face acelasi lucru ca si readIDBookEditorialGroup,doar ca imi adauga la finalul fiecarui PublishingBrand
+        cartea.
+
+    -readCountries
+        Imi creeaza array-ul de tari
+
+    -readPublishingRetailer
+        Imi creeaza array-ul de PublishingRetailers
+
+    -readIDCountryPublishingRetailer
+        Imi adauga tarile la finalul ficarui PublishingRetailer.
+
+    -readIDBookPublishingRetailer
+    -readIDEditorialGroupPublishingRetailer
+    -readIDPublishingBrandsPublishingRetailer
+        In aceste trei functii citesc id-urile fiecaruia si adaug pe fiecare in array-ul IPublishingArtifacts
+        el va avea toate cartile din fiecare grup.
+
+Utils:
+    In aceasta clasa am metode folosite in toata tema.
+    -containsLanguage
+        Controleaza daca in array-ul de limbi exista deja limba care vreau sa o introduc daca exista imi intoarce true.
+
+    -containsLanguage
+        Controleaza daca in array-ul de tari exista deja tara care vreau sa o introduc daca exista imi intoarce true.
+
+    -findBookByID
+        Imi cauta in lista de carti cartea cu id-ul dorit
+
+    -findAuthorByID
+        Imi cauta autorul in lista de autori cu id-ul dorit
+
+    -findLanguageByID
+        Imi cauta limba in lista de limbi cu id-ul dorit
+
+    -findCountryByID
+        Imi cauta tara in lista de tari cu id-ul dorit
+
+    -findPublishingRetailerByID
+        Imi cauta PublishingRetailer-ul cu id-ul dorit
+
+    -findEditorialGroupByID
+        Imi cauta EditorialGroup cu id-ul dorit
+
+    -findPublishingBrandByID
+        Imi cauta PublishingBrand cu id-ul dorit
+
+    -addAtFinalOfEditorialGroupsArray
+    -addAtFinalOfPublishingBrandArray
+        Imi adauga cartea la final-ul fiecarul array
+
+    -addAtFinalOfPublishingRetailerArray
+        Imi adauga tara la final-ul array-ului
+
+WritterInFile:
+    -ex1
+    -ex2
+    -ex3
+        Metodele care ma ajuta la afisarea rezultatelor in fisier.
+
+Administration:
+    Aici am acele 5 functii care s-au cerut de implementat
+    -getBooksForPublishingRetailerID
+        In aceasta metoda am folosit un hashmap, am gasit publishingRetailerul care s-a cerut
+        si am extras cartile pentru el, si le-am adaugat in books.
+
+    -getLanguagesForPublishingRetailerID
+        Gasesc Retailerul, parcurg cartile care se afla in el, cartile le am cu ajutorul functiei de mai sus
+        si extrag limbile fiecarei carti.
+
+    -getCountryForBookID
+        Parcurg toate cartile din publishingRetailer si cand gasesc id-ul cartii scriu toate tarile in contries
+
+    -getCommonBooksForRetailerIDs
+        Gasesc toate cartile pentru ambii retaileri si introduc in set si set 2 dupa cand folosesc
+        retailAll se for scrie doar cartile care sunt comune ambilor Retaileri
+
+    -getAllBooksForRetailersIDs
+        Fac fix ca in metoda de mai sus dar folosesc Collections care imi toate cartile care nu exista.
+
+
+
+
